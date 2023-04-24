@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
 
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 
-import { getContacts } from 'redux/selectors';
+import { getAllContacts } from 'redux/selectors';
 import { addContact } from 'redux/contactsSlice';
 
 import { FormAddContact, Label, Input, BtnContact } from './Form.styled';
@@ -13,7 +13,7 @@ export default function Form() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(getAllContacts);
   const dispatch = useDispatch();
 
   const handleChange = event => {
@@ -47,7 +47,7 @@ export default function Form() {
 
   const onSubmit = contact => {
     // console.log('addContact');
-    contact.id = nanoid();
+    // contact.id = nanoid();
     const normalizedName = contact.name.toLowerCase();
 
     if (
@@ -57,7 +57,7 @@ export default function Form() {
       return;
     }
     const newContact = {
-      id: contact.id,
+      // id: contact.id,
       name: contact.name,
       number: contact.number,
     };

@@ -30,8 +30,13 @@ const rootReducer = combineReducers({
 
 export const store = configureStore({
   reducer: {
-    contacts: rootReducer,
+    rootReducer,
   },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
+
   // middleware: getDefaultMiddleware =>
   //   getDefaultMiddleware({
   //     serializableCheck: {
@@ -41,3 +46,4 @@ export const store = configureStore({
 });
 
 // export const persistor = persistStore(store);
+console.log(store);

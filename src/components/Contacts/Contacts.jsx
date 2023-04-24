@@ -1,55 +1,52 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import toast from 'react-hot-toast';
-
-import { deleteContact } from 'redux/contactsSlice';
-import { getContacts, filtered } from 'redux/selectors';
+import { useSelector } from 'react-redux';
+// import toast from 'react-hot-toast';
+import propTypes from 'prop-types';
+// import { deleteContact } from 'redux/contactsSlice';
+import { getAllContacts } from 'redux/selectors';
 
 import {
   BtnContact,
   ContactItem,
   AllContacts,
-  FilteredContacts,
+  // FilteredContacts,
 } from './Contacts.styled';
 
-const ContactsList = () => {
-  const contacts = useSelector(getContacts);
-  const filter = useSelector(filtered);
+const ContactsList = ({ contacts, deleteContact }) => {
+  // const contacts = useSelector(getAllContacts);
+  // const filter = useSelector(getFilteredContacts);
 
-  // console.log(`contacts: ${contacts}`);
+  console.log(`contacts: ${contacts}`);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const normalizedFilter = filter.toLowerCase();
-  const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(normalizedFilter)
-  );
+  // const normalizedFilter = filter.toLowerCase();
+  // const filteredContacts = contacts.filter(contact =>
+  //   contact.name.toLowerCase().includes(normalizedFilter)
+  // );
 
-  const deleteContactId = id => {
-    // console.log(id);
-    dispatch(deleteContact(id));
-    toast.success('Contact deleted!');
-  };
+  // const deleteContactId = id => {
+  //   // console.log(id);
+  //   dispatch(deleteContact(id));
+  //   toast.success('Contact deleted!');
+  // };
 
   return (
     <>
-      {filter && (
+      {/* {filteredContacts && (
         <FilteredContacts>
           Filtered contacts: <b>{filteredContacts.length}</b>
         </FilteredContacts>
-      )}
+      )} */}
       <ul>
-        {filteredContacts.map(({ id, name, number }) => {
+        {contacts.map(({ id, name, number }) => {
           return (
-            <li key={id}>
+            <li key={id} id={id}>
               <ContactItem>
                 <p>
                   {name}: <b>{number}</b>
                 </p>
-                <BtnContact
-                  type="BtnContact"
-                  onClick={() => deleteContactId(id)}
-                >
+                <BtnContact type="BtnContact" onClick={() => deleteContact(id)}>
                   Delete
                 </BtnContact>
               </ContactItem>
@@ -62,6 +59,10 @@ const ContactsList = () => {
       </AllContacts>
     </>
   );
+};
+
+ContactsList.propTypes = {
+  deleteContact: propTypes.func.isRequired,
 };
 
 export default ContactsList;
