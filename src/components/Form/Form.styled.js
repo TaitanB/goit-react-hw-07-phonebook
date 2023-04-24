@@ -7,7 +7,7 @@ export const FormAddContact = styled.form`
   padding: 30px;
   border: 1px solid blue;
   border-radius: 20px;
-  background-color: rgb(112 207 175);
+  background-color: rgb(112 174 207);
 `;
 
 export const Label = styled.label`
@@ -30,13 +30,14 @@ export const BtnContact = styled.button`
   padding: 5px 10px;
   border: 1px solid blue;
   border-radius: 5px;
-  background-color: rgb(104 139 127);
+  background-color: #0303ab;
+  color: rgb(213 239 230);
   font-weight: 700;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.4);
 
   :hover,
   :focus {
-    background-color: rgb(9 141 96);
-    color: rgb(213 239 230);
+    background-color: green;
     scale: 0.9;
   }
 `;
