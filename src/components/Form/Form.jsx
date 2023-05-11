@@ -7,7 +7,7 @@ import { FormAddContact, Label, Input, BtnContact } from './Form.styled';
 
 export default function Form() {
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
   const dispatch = useDispatch();
   const handleChange = event => {
     // console.log('handleChange');
@@ -21,8 +21,8 @@ export default function Form() {
         break;
 
       case 'number':
-        // console.log('case number');
-        setNumber(value);
+        // console.log('case phone');
+        setPhone(value);
         break;
 
       default:
@@ -34,10 +34,8 @@ export default function Form() {
     // console.log('handleSubmit');
 
     event.preventDefault();
-    // onSubmit({ name, number });
-    // const form = event.target;
-    dispatch(fetchAddContact({ name, number }));
-    // console.log(name, number);
+    dispatch(fetchAddContact({ name, phone }));
+    // console.log(name, phone);
     // console.log(event.target.elements.name.value);
     reset();
   };
@@ -46,7 +44,7 @@ export default function Form() {
     // console.log('reset');
 
     setName('');
-    setNumber('');
+    setPhone('');
   };
 
   return (
@@ -71,7 +69,7 @@ export default function Form() {
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
-          value={number}
+          value={phone}
           onChange={handleChange}
         />
       </Label>
